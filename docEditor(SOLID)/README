@@ -1,0 +1,65 @@
+A. SOLID Principles
+S – Single Responsibility Principle (SRP)
+
+Ek class ki ek primary responsibility honi chahiye.
+
+Tumhare code mein:
+- TextElement text handle karta hai.
+- ImageElement image path handle karta hai.
+- Document elements manage karta hai.
+- FileStorage file saving karta hai.
+Agar file saving mein error aaye toh TextElement ko change nahi karna padega.
+
+O – Open/Closed Principle (OCP)
+
+Software extension ke liye open aur existing code modification ke liye closed hona chahiye.
+
+Example:
+
+Kal tumhe VideoElement add karna hai.
+
+Tum nayi class bana sakti ho:
+class VideoElement implements DocumentElement {
+    public String render() {
+        return "[Video]";
+    }
+}
+
+
+Document class ko change karne ki zarurat nahi hai.
+
+L – Liskov Substitution Principle (LSP)
+
+Child class ko parent/interface ki jagah use kar paana chahiye bina expected behaviour break kiye.
+
+Example:
+DocumentElement element = new TextElement("Hello");
+
+
+Ya:
+DocumentElement element = new ImageElement("photo.jpg");
+
+
+Dono ko DocumentElement ke roop mein use kar sakte hain.
+
+I – Interface Segregation Principle (ISP)
+
+Kisi class ko aise methods implement karne ke liye force nahi karna chahiye jinki usko zarurat nahi hai.
+
+Example:
+
+TextElement ko sirf render() implement karna hai. Usko saveToDatabase(), printImage() jaise unrelated methods implement nahi karne padte.
+
+D – Dependency Inversion Principle (DIP)
+
+High-level classes ko concrete implementations ke bajaye abstractions par depend karna chahiye.
+
+Tumhare code mein:
+private Persistence storage;
+
+
+Na ki:
+private FileStorage storage;
+
+
+Isliye FileStorage aur DBStorage ke beech easily switch kar sakte hain.
